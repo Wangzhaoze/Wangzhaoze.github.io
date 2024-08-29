@@ -23,6 +23,7 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 
 # 🔥 News
 - *2024.07*: &nbsp;🎉🎉 Join E-ES-RT2 at FORVIA HELLA as PhD student in radar and autonomous driving
+- *2024.07*: &nbsp;🎉🎉 Publish my first paper in IEEE Robotics and Automation Letters (RA-L)
 - *2023.11*: &nbsp;🎉🎉 Stay in CR/AIR4.1 at Bosch Center for Artificial Intelligence as a master thesis student in Computer Vision and Robotics
 - *2023.05*: &nbsp;🎉🎉 Join CR/AIR4.1 at Bosch Center for Artificial Intelligence as a research intern in Computer Vision and Robotics
 - *2022.10*: &nbsp;🎉🎉 Join Lehrstuhl für Hochfrequenztechnik at Friedrich-Alexander-Universität as student research assistant in radar and autonomous driving
