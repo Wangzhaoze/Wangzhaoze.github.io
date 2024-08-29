@@ -48,7 +48,7 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">IEEE Robotics and Automation Letters (RA-L)</div><img src='images/res_plot.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar**]
+**RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar**
 
 **Zhaoze Wang**, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek
 
