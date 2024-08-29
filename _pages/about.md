@@ -41,7 +41,9 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 - *2022.10 - 2023.05*, Student Research Assistant, Lehrstuhl für Hochfrequenztechnik, Friedrich-Alexander-Universität, Germany
 - *2023.05 - 2023.11*, Research Internship, Bosch Center for Artificial Intelligence, Germany
 - *2023.11 - 2024.05*, Master Thesis Student, Bosch Center for Artificial Intelligence, Germany
+- *2024.07 - Present*, PhD Student, FORVIA HELLA, Germany
 
+  
 
 # 📝 Publications 
 
