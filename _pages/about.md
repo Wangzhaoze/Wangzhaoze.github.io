@@ -19,11 +19,13 @@ redirect_from:
 
 Introduction
 
-My research interest includes Computer Vision, Robotics and Autonomous Driving. 
+My research interests include automotive radar, Computer Vision, Robotics and Autonomous Driving. 
 
 # 🔥 News
-- *2023.05*: &nbsp;🎉🎉 Join CR/AIR4.1 at Bosch Center for Artificial Intelligence as research intern in Computer Vision and Robotics
-
+- *2024.07*: &nbsp;🎉🎉 Join E-ES-RT2 at FORVIA HELLA as PhD student in radar and autonomous driving
+- *2023.11*: &nbsp;🎉🎉 Stay in CR/AIR4.1 at Bosch Center for Artificial Intelligence as a master thesis student in Computer Vision and Robotics
+- *2023.05*: &nbsp;🎉🎉 Join CR/AIR4.1 at Bosch Center for Artificial Intelligence as a research intern in Computer Vision and Robotics
+- *2022.10*: &nbsp;🎉🎉 Join Lehrstuhl für Hochfrequenztechnik at Friedrich-Alexander-Universität as student research assistant in radar and autonomous driving
 
 
 
@@ -42,30 +44,18 @@ My research interest includes Computer Vision, Robotics and Autonomous Driving.
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IEEE Robotics and Automation Letters (RA-L)</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IEEE Robotics and Automation Letters (RA-L)</div><img src='images/res_plot.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar](https://ieeexplore.ieee.org/abstract/document/10628992)
+[**RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar**]
 
 **Zhaoze Wang**, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-</div>
-</div>
-
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
-
-
+[**Project**](https://wangzhaoze.github.io/RADxGPS/)
+[**Paper**](https://ieeexplore.ieee.org/abstract/document/10628992)
 
 
 # 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- None
 
-
-
-
-
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
