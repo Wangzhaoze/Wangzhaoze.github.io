@@ -59,9 +59,3 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 
 
 
-
-
-# 🎖 Honors and Awards
-- None
-
-
