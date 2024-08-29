@@ -22,11 +22,11 @@ Introduction
 My research interests include automotive radar, Computer Vision, Robotics and Autonomous Driving. 
 
 # 🔥 News
-- *2024.07*: &nbsp;🎉🎉 Join E-ES-RT2 at FORVIA HELLA as PhD student in radar and autonomous driving
+- *2024.07*: &nbsp;🎉🎉 Join E-ES-RT2 at FORVIA HELLA as a **PhD student** in radar and autonomous driving
 - *2024.07*: &nbsp;🎉🎉 Publish my first paper in IEEE Robotics and Automation Letters (RA-L)
-- *2023.11*: &nbsp;🎉🎉 Stay in CR/AIR4.1 at Bosch Center for Artificial Intelligence as a master thesis student in Computer Vision and Robotics
-- *2023.05*: &nbsp;🎉🎉 Join CR/AIR4.1 at Bosch Center for Artificial Intelligence as a research intern in Computer Vision and Robotics
-- *2022.10*: &nbsp;🎉🎉 Join Lehrstuhl für Hochfrequenztechnik at Friedrich-Alexander-Universität as student research assistant in radar and autonomous driving
+- *2023.11*: &nbsp;🎉🎉 Stay in CR/AIR4.1 at Bosch Center for Artificial Intelligence as a **master thesis student** in Computer Vision and Robotics
+- *2023.05*: &nbsp;🎉🎉 Join CR/AIR4.1 at Bosch Center for Artificial Intelligence as a **research intern** in Computer Vision and Robotics
+- *2022.10*: &nbsp;🎉🎉 Join Lehrstuhl für Hochfrequenztechnik at Friedrich-Alexander-Universität as **student research assistant** in radar and autonomous driving
 
 
 
@@ -53,7 +53,12 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 **Zhaoze Wang**, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek
 
 [**Project**](https://wangzhaoze.github.io/RADxGPS/)
+
+
 [**Paper**](https://ieeexplore.ieee.org/abstract/document/10628992)
+
+
+
 
 
 # 🎖 Honors and Awards
