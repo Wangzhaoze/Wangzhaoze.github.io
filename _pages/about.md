@@ -29,11 +29,31 @@ My research interests include automotive radar, Computer Vision, Robotics and Au
 - *2022.10*: &nbsp;🎉🎉 Join Lehrstuhl für Hochfrequenztechnik at Friedrich-Alexander-Universität as **student research assistant** in radar and autonomous driving
 
 
-
 # 📖 Educations
 - *2021.10 - 2024.06*: Friedrich-Alexander University Erlangen-Nuremberg
 - *2016.09 - 2020.06*: Harbin Engineering University 
 
+
+# 💻 Work Experience
+- *2022.10 - 2023.05*, Student Research Assistant, Lehrstuhl für Hochfrequenztechnik, Friedrich-Alexander-Universität, Germany
+- *2023.05 - 2023.11*, Research Internship, Bosch Center for Artificial Intelligence, Germany
+- *2023.11 - 2024.05*, Master Thesis Student, Bosch Center for Artificial Intelligence, Germany
+- *2024.07 - Present*, PhD Student, FORVIA HELLA, Germany
+
+
+# 📝 Publications 
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IEEE Robotics and Automation Letters (RA-L)</div><img src='images/res_plot.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+**RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar**
+
+**Zhaoze Wang**, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek
+
+[**Project**](https://wangzhaoze.github.io/RADxGPS/)
+
+
+[**Paper**](https://ieeexplore.ieee.org/abstract/document/10628992)
 
 
 
