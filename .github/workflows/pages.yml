@@ -1,9 +1,7 @@
-name: Build and deploy Next.js site
+name: Deploy personal homepage
 
 on:
   push:
-    branches: [main, redesign/aitezaz-migration]
-  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -17,38 +15,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Install dependencies
-        run: npm install
-      - name: Build static site
-        run: npm run build
-      - name: Disable Jekyll
-        run: touch out/.nojekyll
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-
   deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Stage static site
+        run: |
+          mkdir -p _site/docs
+          cp index.html styles.css script.js .nojekyll _site/
+          cp -R images _site/images
+          cp "docs/Zhaoze Wang CV.pdf" "_site/docs/Zhaoze Wang CV.pdf"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
