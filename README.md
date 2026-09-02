@@ -1,25 +1,30 @@
+# Zhaoze Wang — Personal Research Portfolio
 
-<h1 align="center">
-AcadHomepage
-</h1>
+Redesigned personal site for **Radar · Generative AI · Autonomous Driving**.
 
-<div align="center">
+## Stack
 
-[![](https://img.shields.io/github/stars/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/forks/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/issues/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/license/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io/blob/main/LICENSE)  | [中文文档](./docs/README-zh.md) 
-</div>
+- Next.js static export
+- GSAP + ScrollTrigger
+- Lenis smooth scrolling
+- Custom lightweight radar/digital-twin canvas background
+- GitHub Pages deployment via Actions
 
-<p align="center">A Modern and Responsive Academic Personal Homepage</p>
+## Local development
 
-<p align="center">
-    <br>
-    <img src="docs/screenshot.png" width="100%"/>
-    <br>
-</p>
+```bash
+npm install
+npm run dev
+```
 
-Some examples:
-- [Demo Page](https://rayeren.github.io/acad-homepage.github.io/)
-- [Personal Homepage of the author](https://rayeren.github.io/)
+## Production build
 
+```bash
+npm run build
+```
+
+The exported static site is written to `out/`.
+
+## Design direction
+
+The redesign takes inspiration from Aitezaz Sikandar's MIT-licensed portfolio while using a new information architecture and custom radar-oriented visual identity for Zhaoze Wang.

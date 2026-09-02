@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wangzhaoze.github.io/sitemap.xml
