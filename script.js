@@ -1,7 +1,6 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // One-shot section reveals.
   const reveals = [...document.querySelectorAll('.reveal')];
   if (reduceMotion) {
     reveals.forEach(el => el.classList.add('is-visible'));
@@ -20,7 +19,6 @@
     });
   }
 
-  // Scroll progress + restrained hero parallax.
   const progress = document.querySelector('.scroll-progress span');
   const heroInner = document.querySelector('.hero-inner');
   const onScroll = () => {
@@ -36,7 +34,6 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Aitezaz-inspired cursor: immediate dot + delayed outline.
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorRing = document.querySelector('.cursor-ring');
   const finePointer = window.matchMedia('(pointer:fine)').matches;
@@ -85,7 +82,6 @@
     });
   }
 
-  // Spotlight follows the pointer inside the hero.
   const hero = document.querySelector('.hero');
   const spotlight = document.querySelector('.hero-spotlight');
   if (hero && spotlight && !reduceMotion) {
@@ -98,9 +94,19 @@
     hero.addEventListener('pointerleave', () => { spotlight.style.opacity = '0'; });
   }
 
-  // Research role ticker under the hero description.
   const roleText = document.getElementById('role-text');
-  const roles = ['AUTOMOTIVE RADAR', 'RADAR SIMULATION', 'GENERATIVE AI', 'AUTONOMOUS DRIVING'];
+  const roles = [
+    'AUTOMOTIVE RADAR',
+    'DIGITAL TWIN',
+    'RADAR SIMULATION',
+    'GENERATIVE AI',
+    'WORLD MODELS',
+    'ROBOTICS',
+    'AUTONOMOUS DRIVING',
+    'PERCEPTION',
+    'SENSOR FUSION',
+    'RAY TRACING'
+  ];
   let roleIndex = 0;
   if (roleText && !reduceMotion) {
     setInterval(() => {
@@ -115,11 +121,45 @@
           roleText.style.transform = 'translateY(0)';
         });
       }, 220);
-    }, 2600);
+    }, 2100);
     roleText.style.transition = 'opacity .22s ease, transform .22s ease';
   }
 
-  // Static GitHub Pages contact form: validate fields then open a pre-filled email.
+  // Experience image previews. Add an image path to data-photo on any .experience-row.
+  // Example: <div class="timeline-row experience-row" data-photo="images/experience/hella.jpg">…</div>
+  const experiencePreview = document.getElementById('experience-preview');
+  const experiencePreviewImg = experiencePreview?.querySelector('img');
+  const experienceRows = [...document.querySelectorAll('.experience-row')];
+  if (experiencePreview && experiencePreviewImg && finePointer && !reduceMotion) {
+    let previewX = pointerX;
+    let previewY = pointerY;
+    const positionPreview = () => {
+      previewX += (pointerX - previewX) * 0.16;
+      previewY += (pointerY - previewY) * 0.16;
+      const width = experiencePreview.getBoundingClientRect().width || 320;
+      const height = experiencePreview.getBoundingClientRect().height || 240;
+      const offset = 30;
+      const x = Math.min(window.innerWidth - width - 20, previewX + offset);
+      const y = Math.min(window.innerHeight - height - 20, previewY + offset);
+      experiencePreview.style.left = `${Math.max(20, x)}px`;
+      experiencePreview.style.top = `${Math.max(20, y)}px`;
+      requestAnimationFrame(positionPreview);
+    };
+    requestAnimationFrame(positionPreview);
+
+    experienceRows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        const src = row.getAttribute('data-photo')?.trim();
+        if (!src) return;
+        experiencePreviewImg.src = src;
+        experiencePreview.classList.add('is-visible');
+      });
+      row.addEventListener('mouseleave', () => {
+        experiencePreview.classList.remove('is-visible');
+      });
+    });
+  }
+
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
   if (contactForm instanceof HTMLFormElement) {
@@ -142,7 +182,6 @@
     });
   }
 
-  // Ambient automotive-radar geometry. Mouse movement shifts the virtual sensor origin.
   const canvas = document.getElementById('radar-canvas');
   if (!(canvas instanceof HTMLCanvasElement)) return;
   const ctx = canvas.getContext('2d');
@@ -154,7 +193,7 @@
   let mx = 0;
   let my = 0;
 
-  const points = Array.from({ length: 74 }, (_, i) => ({
+  const points = Array.from({ length: 82 }, (_, i) => ({
     x: ((i * 47) % 100) / 100,
     y: ((i * 83) % 100) / 100,
     depth: 0.28 + ((i * 29) % 70) / 100,
@@ -186,8 +225,7 @@
     ctx.save();
     ctx.lineWidth = 1;
 
-    // Perspective road/digital-twin grid.
-    ctx.strokeStyle = 'rgba(72,65,59,.065)';
+    ctx.strokeStyle = 'rgba(235,232,225,.055)';
     for (let i = 0; i < 7; i += 1) {
       const y = h * 0.52 + i * h * 0.077;
       ctx.beginPath();
@@ -203,9 +241,8 @@
       ctx.stroke();
     }
 
-    // Sensor arcs.
     [0.17, 0.29, 0.41].forEach((radius, i) => {
-      ctx.strokeStyle = `rgba(196,93,62,${0.12 - i * 0.022})`;
+      ctx.strokeStyle = `rgba(224,122,95,${0.14 - i * 0.024})`;
       ctx.beginPath();
       ctx.arc(cx, cy, Math.min(w, h) * radius, Math.PI * 1.08, Math.PI * 1.92);
       ctx.stroke();
@@ -213,28 +250,26 @@
 
     if (!reduceMotion) {
       const pulse = ((t * 0.00013) % 1) * Math.min(w, h) * 0.55;
-      ctx.strokeStyle = 'rgba(196,93,62,.15)';
+      ctx.strokeStyle = 'rgba(224,122,95,.16)';
       ctx.beginPath();
       ctx.arc(cx, cy, pulse, Math.PI * 1.08, Math.PI * 1.92);
       ctx.stroke();
     }
 
-    // Sparse detections / returns.
     points.forEach(p => {
       const drift = reduceMotion ? 0 : Math.sin(t * 0.00025 * p.speed + p.phase) * 9;
       const x = w * (0.28 + p.x * 0.73) + mx * 24 * p.depth;
       const y = h * (0.29 + p.y * 0.66) + drift + my * 14 * p.depth;
       const flicker = reduceMotion ? 0.45 : 0.24 + 0.5 * Math.max(0, Math.sin(t * 0.001 + p.phase));
       ctx.fillStyle = p.accent
-        ? `rgba(196,93,62,${0.35 + flicker * 0.45})`
-        : `rgba(50,46,42,${0.12 + flicker * p.depth * 0.32})`;
+        ? `rgba(224,122,95,${0.35 + flicker * 0.45})`
+        : `rgba(235,232,225,${0.05 + flicker * p.depth * 0.18})`;
       ctx.beginPath();
       ctx.arc(x, y, p.accent ? 1.7 : 0.8 + p.depth * 0.9, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    // Minimal ego-vehicle glyph.
-    ctx.strokeStyle = 'rgba(17,17,15,.36)';
+    ctx.strokeStyle = 'rgba(241,238,231,.28)';
     ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.moveTo(cx - 22, cy + 8);
