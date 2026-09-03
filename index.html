@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0b0a" />
+  <meta name="theme-color" content="#ece8df" />
   <meta name="description" content="Zhaoze Wang — PhD researcher in automotive radar, generative AI, robotics and autonomous driving." />
   <meta property="og:title" content="Zhaoze Wang" />
   <meta property="og:description" content="Radar · Generative AI · Autonomous Driving" />
@@ -16,35 +16,54 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
-
-  <nav class="nav-shell" aria-label="Primary navigation">
-    <a class="brand-mark" href="#top" aria-label="Back to top">ZW<span>°</span></a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#research">Research</a>
-      <a href="#about">About</a>
-    </div>
-    <a class="nav-contact" href="mailto:wangzhaoze@outlook.com">Contact <span>↗</span></a>
-  </nav>
 
   <main>
     <section id="top" class="hero">
       <canvas id="radar-canvas" class="radar-canvas" aria-hidden="true"></canvas>
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-meta reveal reveal-fast">
+      <div class="hero-spotlight" aria-hidden="true"></div>
+      <div class="corner-mark" aria-hidden="true">ZW<span>°</span></div>
+      <div class="corner-status" aria-hidden="true">
         <span>PhD Researcher</span>
-        <span>FORVIA HELLA</span>
-        <span>Lippstadt, Germany</span>
+        <span>FORVIA HELLA · Germany</span>
       </div>
-      <div class="hero-copy">
-        <p class="eyebrow reveal reveal-fast">Radar · Generative AI · Autonomous Driving</p>
-        <h1 class="hero-wordmark reveal reveal-fast"><span>ZHAOZE</span><span>WANG</span></h1>
-        <div class="hero-bottom reveal reveal-fast">
-          <p>Building intelligent sensing systems at the boundary between <strong>simulation and reality.</strong></p>
-          <a class="scroll-cue" href="#work">Explore selected work <span>↓</span></a>
+
+      <div class="hero-inner">
+        <div class="hero-heading-wrap reveal reveal-fast">
+          <h1 class="hero-wordmark" aria-label="Zhaoze Wang">
+            <span class="hero-first">ZHAOZE</span>
+            <span class="hero-last">Wang</span>
+          </h1>
+        </div>
+
+        <p class="hero-description reveal reveal-fast">
+          Building intelligent sensing systems at the boundary between
+          <strong>simulation and reality.</strong>
+        </p>
+
+        <div class="role-ticker reveal reveal-fast" aria-label="Research fields">
+          <span class="role-prefix">CURRENTLY /</span>
+          <span id="role-text">AUTOMOTIVE RADAR</span>
+        </div>
+
+        <div class="hero-actions reveal reveal-fast" aria-label="Homepage navigation">
+          <a class="hero-button hero-button-primary" href="#work" data-cursor="view">
+            <span>PROJECTS</span><strong>VIEW WORK →</strong>
+          </a>
+          <a class="hero-button" href="#research" data-cursor="view">
+            <span>PUBLICATIONS</span><strong>RESEARCH →</strong>
+          </a>
+          <a class="hero-button" href="#contact" data-cursor="view">
+            <span>CONTACT</span><strong>GET IN TOUCH →</strong>
+          </a>
+          <a class="hero-button" href="docs/Zhaoze%20Wang%20CV.pdf" target="_blank" rel="noreferrer" data-cursor="view">
+            <span>CV</span><strong>OPEN →</strong>
+          </a>
         </div>
       </div>
+
+      <a class="hero-scroll" href="#work">SCROLL TO EXPLORE <span>↓</span></a>
     </section>
 
     <section id="work" class="section section-cream">
@@ -55,8 +74,8 @@
 
       <div class="project-grid">
         <article class="project-card project-card-featured reveal">
-          <a class="project-visual project-image" href="https://wangzhaoze.github.io/aurasim/" target="_blank" rel="noreferrer" aria-label="Open AuRaSim project">
-            <img src="https://wangzhaoze.github.io/aurasim/screenshot-dark.png" alt="AuRaSim project website preview" loading="lazy" />
+          <a class="project-visual project-image" href="https://wangzhaoze.github.io/aurasim/" target="_blank" rel="noreferrer" aria-label="Open AuRaSim project" data-cursor="view">
+            <img src="https://raw.githubusercontent.com/Wangzhaoze/aurasim/main/src/assets/cover/cover.png" alt="AuRaSim cover image" loading="lazy" />
             <div class="project-image-overlay"></div>
             <span class="project-number">01</span>
             <span class="project-visual-label">Dynamic digital-twin radar simulation</span>
@@ -73,7 +92,7 @@
         </article>
 
         <article class="project-card reveal">
-          <a class="project-visual project-radar" href="https://wangzhaoze.github.io/pyradar/" target="_blank" rel="noreferrer" aria-label="Open PyRadar project">
+          <a class="project-visual project-radar" href="https://wangzhaoze.github.io/pyradar/" target="_blank" rel="noreferrer" aria-label="Open PyRadar project" data-cursor="view">
             <span class="project-number">02</span>
             <div class="radar-disc radar-disc-a"></div>
             <div class="radar-disc radar-disc-b"></div>
@@ -94,7 +113,7 @@
         </article>
 
         <article class="project-card reveal">
-          <a class="project-visual project-generative" href="https://github.com/Wangzhaoze/generative_models_lightning" target="_blank" rel="noreferrer" aria-label="Open Generative Models Lightning project">
+          <a class="project-visual project-generative" href="https://github.com/Wangzhaoze/generative_models_lightning" target="_blank" rel="noreferrer" aria-label="Open Generative Models Lightning project" data-cursor="view">
             <span class="project-number">03</span>
             <div class="latent-grid"></div>
             <div class="latent-orb orb-a"></div>
@@ -175,13 +194,42 @@
         </div>
       </div>
     </section>
+
+    <section id="contact" class="contact-section">
+      <div class="contact-card reveal">
+        <div class="contact-heading">
+          <p class="section-index contact-index">04 / Contact</p>
+          <h2>LET'S <em>talk</em></h2>
+          <p>Have a research idea, collaboration, question, or just want to say hello? Send me a message.</p>
+        </div>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <label>
+            <span>Your Name *</span>
+            <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your Name" required />
+          </label>
+          <label>
+            <span>Your Email *</span>
+            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            <span>Message *</span>
+            <textarea id="contact-message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+          </label>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+          <button class="contact-submit" type="submit" data-cursor="view"><span>SEND MESSAGE</span><strong>PROCEED →</strong></button>
+        </form>
+
+        <div class="direct-contact">
+          <span>DIRECT CONTACT</span>
+          <a href="mailto:wangzhaoze@outlook.com" data-cursor="copy">wangzhaoze@outlook.com</a>
+          <small>Click to open your email client</small>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-top reveal">
-      <p>Let’s build what sensors can see next.</p>
-      <a href="mailto:wangzhaoze@outlook.com">wangzhaoze@outlook.com <span>↗</span></a>
-    </div>
     <div class="social-row">
       <a href="mailto:wangzhaoze@outlook.com">Email</a>
       <a href="https://www.linkedin.com/in/wangzhaoze/" target="_blank" rel="noreferrer">LinkedIn</a>
