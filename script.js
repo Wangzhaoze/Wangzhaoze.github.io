@@ -66,29 +66,53 @@
     roleText.style.transition='opacity .22s ease, transform .22s ease';
   }
 
-  const preview = document.getElementById('experience-preview');
-  const previewImg = preview?.querySelector('img');
+  // Timeline visual cards: the photo becomes the card background only on hover.
+  const visualStyle = document.createElement('style');
+  visualStyle.textContent = `
+    .experience-preview{display:none!important}
+    .experience-photo-note{display:none!important}
+    .timeline-row.timeline-visual{
+      position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.085);
+      border-radius:5px;padding:30px;min-height:240px;aspect-ratio:16/9;align-content:end;
+      background:#151513;transition:border-color .4s ease,transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease;
+    }
+    .timeline-row.timeline-visual::before{
+      content:"";position:absolute;inset:0;z-index:-2;background-image:var(--timeline-photo);
+      background-size:cover;background-position:var(--timeline-position,center);opacity:0;transform:scale(1.025);
+      filter:saturate(.78) contrast(1.04) brightness(.72);transition:opacity .55s ease,transform 1.1s cubic-bezier(.2,.8,.2,1),filter .55s ease;
+    }
+    .timeline-row.timeline-visual::after{
+      content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,11,10,.94) 0%,rgba(11,11,10,.78) 48%,rgba(11,11,10,.52) 100%),linear-gradient(0deg,rgba(11,11,10,.72),rgba(11,11,10,.08));
+      opacity:0;transition:opacity .5s ease;
+    }
+    .timeline-row.timeline-visual:hover{transform:translateY(-3px);border-color:rgba(224,122,95,.32);box-shadow:0 22px 65px rgba(0,0,0,.24)}
+    .timeline-row.timeline-visual:hover::before{opacity:1;transform:scale(1);filter:saturate(.96) contrast(1.03) brightness(.78)}
+    .timeline-row.timeline-visual:hover::after{opacity:1}
+    .timeline-row.timeline-visual>.timeline-period,.timeline-row.timeline-visual>div{position:relative;z-index:2}
+    .timeline-row.timeline-visual .timeline-period{color:#a9a39b;transition:color .35s ease}
+    .timeline-row.timeline-visual h4{font-size:clamp(22px,2vw,30px);color:#f2efe8;text-shadow:0 1px 18px rgba(0,0,0,.35)}
+    .timeline-row.timeline-visual div>p{color:#bbb5ad;text-shadow:0 1px 15px rgba(0,0,0,.38)}
+    .timeline-row.timeline-visual .timeline-detail{color:#969089}
+    @media(max-width:850px){.timeline-row.timeline-visual{aspect-ratio:auto;min-height:220px;padding:24px}.timeline-row.timeline-visual::before{opacity:.2}.timeline-row.timeline-visual::after{opacity:.65}}
+  `;
+  document.head.appendChild(visualStyle);
+
   const expRows = [...document.querySelectorAll('.timeline-layout > .timeline-column:first-child .timeline-row')];
   const eduRows = [...document.querySelectorAll('.timeline-layout > .timeline-column:nth-child(2) .timeline-row')];
-  const previewItems = [
-    [expRows[0],'images/experience/phd.webp'],
-    [expRows[1],'images/experience/master-thesis.webp'],
-    [expRows[2],'images/experience/research-intern.webp'],
-    [expRows[3],'images/experience/student-assistant.webp'],
-    [eduRows[0],'images/experience/msc-fau.webp'],
-    [eduRows[1],'images/experience/bachelor.webp']
+  const visualItems = [
+    [expRows[0],'images/experience/phd.webp','center 54%'],
+    [expRows[1],'images/experience/master-thesis.webp','center 50%'],
+    [expRows[2],'images/experience/research-intern.webp','center 58%'],
+    [expRows[3],'images/experience/student-assistant.webp','center 48%'],
+    [eduRows[0],'images/experience/msc-fau.webp','center 50%'],
+    [eduRows[1],'images/experience/bachelor.webp','center 52%']
   ].filter(([el])=>el);
-  document.querySelector('.experience-photo-note')?.remove();
-  previewItems.forEach(([el,src])=>{ el.setAttribute('data-photo',src); const img=new Image(); img.src=src; });
-  if (preview && previewImg && finePointer && !reduceMotion) {
-    let px=pointerX, py=pointerY;
-    const movePreview=()=>{ px+=(pointerX-px)*.16; py+=(pointerY-py)*.16; const w=preview.getBoundingClientRect().width||340,h=preview.getBoundingClientRect().height||240; const x=Math.min(innerWidth-w-20,px+28),y=Math.min(innerHeight-h-20,py+28); preview.style.left=`${Math.max(20,x)}px`; preview.style.top=`${Math.max(20,y)}px`; requestAnimationFrame(movePreview); };
-    requestAnimationFrame(movePreview);
-    previewItems.forEach(([el,src])=>{
-      el.addEventListener('mouseenter',()=>{ previewImg.src=src; previewImg.alt=`${el.querySelector('h4')?.textContent||'Timeline'} photo`; preview.classList.add('is-visible'); });
-      el.addEventListener('mouseleave',()=>preview.classList.remove('is-visible'));
-    });
-  }
+  visualItems.forEach(([el,src,pos])=>{
+    el.classList.add('timeline-visual');
+    el.style.setProperty('--timeline-photo',`url("${src}")`);
+    el.style.setProperty('--timeline-position',pos);
+    const preload = new Image(); preload.src = src;
+  });
 
   const contactForm=document.getElementById('contact-form'); const formStatus=document.getElementById('form-status');
   if (contactForm instanceof HTMLFormElement) contactForm.addEventListener('submit',e=>{ e.preventDefault(); const name=document.getElementById('contact-name')?.value.trim()||'',email=document.getElementById('contact-email')?.value.trim()||'',message=document.getElementById('contact-message')?.value.trim()||'',valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); if(!name||!valid||message.length<5){if(formStatus)formStatus.textContent='Please enter your name, a valid email address, and a message.';return;} if(formStatus)formStatus.textContent='Opening your email app…'; location.href=`mailto:wangzhaoze@outlook.com?subject=${encodeURIComponent(`Website message from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`; });
