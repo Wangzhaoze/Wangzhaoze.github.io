@@ -6,5 +6,5 @@
     s.defer = true;
     document.head.appendChild(s);
   };
-  load('script-base.js', () => load('career-ppt.js'));
+  load('script-base.js', () => load('career-showcase.js'));
 })();
