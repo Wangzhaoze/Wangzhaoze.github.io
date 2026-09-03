@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#ece8df" />
+  <meta name="theme-color" content="#0b0b0a" />
   <meta name="description" content="Zhaoze Wang — PhD researcher in automotive radar, generative AI, robotics and autonomous driving." />
   <meta property="og:title" content="Zhaoze Wang" />
   <meta property="og:description" content="Radar · Generative AI · Autonomous Driving" />
@@ -18,6 +18,7 @@
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div id="experience-preview" class="experience-preview" aria-hidden="true"><img alt="Experience preview" /></div>
 
   <main>
     <section id="top" class="hero">
@@ -47,26 +48,27 @@
           <span id="role-text">AUTOMOTIVE RADAR</span>
         </div>
 
+        <div class="hero-socials reveal reveal-fast" aria-label="Professional profiles">
+          <a href="mailto:wangzhaoze@outlook.com">Email ↗</a>
+          <a href="https://www.linkedin.com/in/wangzhaoze/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a href="https://github.com/Wangzhaoze" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://scholar.google.com/citations?user=Fi2HyHYAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+          <a href="https://www.researchgate.net/profile/Zhaoze-Wang-2" target="_blank" rel="noreferrer">ResearchGate ↗</a>
+          <a href="https://orcid.org/0009-0000-3158-8239" target="_blank" rel="noreferrer">ORCID ↗</a>
+        </div>
+
         <div class="hero-actions reveal reveal-fast" aria-label="Homepage navigation">
-          <a class="hero-button hero-button-primary" href="#work" data-cursor="view">
-            <span>PROJECTS</span><strong>VIEW WORK →</strong>
-          </a>
-          <a class="hero-button" href="#research" data-cursor="view">
-            <span>PUBLICATIONS</span><strong>RESEARCH →</strong>
-          </a>
-          <a class="hero-button" href="#contact" data-cursor="view">
-            <span>CONTACT</span><strong>GET IN TOUCH →</strong>
-          </a>
-          <a class="hero-button" href="docs/Zhaoze%20Wang%20CV.pdf" target="_blank" rel="noreferrer" data-cursor="view">
-            <span>CV</span><strong>OPEN →</strong>
-          </a>
+          <a class="hero-button hero-button-primary" href="#work" data-cursor="view"><span>PROJECTS</span><strong>VIEW WORK →</strong></a>
+          <a class="hero-button" href="#research" data-cursor="view"><span>PUBLICATIONS</span><strong>RESEARCH →</strong></a>
+          <a class="hero-button" href="#contact" data-cursor="view"><span>CONTACT</span><strong>GET IN TOUCH →</strong></a>
+          <a class="hero-button" href="docs/Zhaoze%20Wang%20CV.pdf" target="_blank" rel="noreferrer" data-cursor="view"><span>CV</span><strong>OPEN →</strong></a>
         </div>
       </div>
 
       <a class="hero-scroll" href="#work">SCROLL TO EXPLORE <span>↓</span></a>
     </section>
 
-    <section id="work" class="section section-cream">
+    <section id="work" class="section section-dark">
       <div class="section-header reveal">
         <p class="section-index">01 / Selected work</p>
         <h2>Research made visible.</h2>
@@ -94,9 +96,7 @@
         <article class="project-card reveal">
           <a class="project-visual project-radar" href="https://wangzhaoze.github.io/pyradar/" target="_blank" rel="noreferrer" aria-label="Open PyRadar project" data-cursor="view">
             <span class="project-number">02</span>
-            <div class="radar-disc radar-disc-a"></div>
-            <div class="radar-disc radar-disc-b"></div>
-            <div class="radar-disc radar-disc-c"></div>
+            <div class="radar-disc radar-disc-a"></div><div class="radar-disc radar-disc-b"></div><div class="radar-disc radar-disc-c"></div>
             <div class="radar-sweep"></div>
             <span class="radar-point p1"></span><span class="radar-point p2"></span><span class="radar-point p3"></span><span class="radar-point p4"></span>
             <span class="project-visual-label">Signal processing · detection · DOA</span>
@@ -115,19 +115,14 @@
         <article class="project-card reveal">
           <a class="project-visual project-generative" href="https://github.com/Wangzhaoze/generative_models_lightning" target="_blank" rel="noreferrer" aria-label="Open Generative Models Lightning project" data-cursor="view">
             <span class="project-number">03</span>
-            <div class="latent-grid"></div>
-            <div class="latent-orb orb-a"></div>
-            <div class="latent-orb orb-b"></div>
-            <div class="latent-orb orb-c"></div>
+            <div class="latent-grid"></div><div class="latent-orb orb-a"></div><div class="latent-orb orb-b"></div><div class="latent-orb orb-c"></div>
             <span class="project-visual-label">Diffusion · generative learning · Lightning</span>
           </a>
           <div class="project-content">
             <p class="project-eyebrow">Generative AI · PyTorch Lightning</p>
             <h3>Generative Models Lightning</h3>
             <p>A lightweight experimentation library for modern generative models with a clean PyTorch Lightning training stack.</p>
-            <div class="project-links">
-              <a href="https://github.com/Wangzhaoze/generative_models_lightning" target="_blank" rel="noreferrer">GitHub ↗</a>
-            </div>
+            <div class="project-links"><a href="https://github.com/Wangzhaoze/generative_models_lightning" target="_blank" rel="noreferrer">GitHub ↗</a></div>
           </div>
         </article>
       </div>
@@ -135,37 +130,36 @@
 
     <section class="marquee-section" aria-label="Research themes">
       <div class="marquee-track">
-        <span>RADAR</span><i>•</i><span>SIMULATION</span><i>•</i><span>GENERATION</span><i>•</i><span>PERCEPTION</span><i>•</i><span>DIGITAL TWIN</span><i>•</i>
-        <span>RADAR</span><i>•</i><span>SIMULATION</span><i>•</i><span>GENERATION</span><i>•</i><span>PERCEPTION</span><i>•</i><span>DIGITAL TWIN</span><i>•</i>
+        <span>RADAR</span><i>•</i><span>DIGITAL TWIN</span><i>•</i><span>SIMULATION</span><i>•</i><span>GENERATIVE AI</span><i>•</i><span>WORLD MODELS</span><i>•</i><span>ROBOTICS</span><i>•</i><span>AUTONOMOUS DRIVING</span><i>•</i><span>PERCEPTION</span><i>•</i><span>SENSOR FUSION</span><i>•</i><span>RAY TRACING</span><i>•</i>
+        <span>RADAR</span><i>•</i><span>DIGITAL TWIN</span><i>•</i><span>SIMULATION</span><i>•</i><span>GENERATIVE AI</span><i>•</i><span>WORLD MODELS</span><i>•</i><span>ROBOTICS</span><i>•</i><span>AUTONOMOUS DRIVING</span><i>•</i><span>PERCEPTION</span><i>•</i><span>SENSOR FUSION</span><i>•</i><span>RAY TRACING</span><i>•</i>
       </div>
     </section>
 
-    <section id="research" class="section section-ink">
-      <div class="section-header section-header-light reveal">
+    <section id="research" class="section section-deeper">
+      <div class="section-header reveal">
         <p class="section-index">02 / Publications</p>
         <h2>Selected research.</h2>
       </div>
 
-      <article class="publication reveal">
-        <div class="publication-image-wrap">
-          <img src="images/res_plot.png" alt="RADxGPS result visualization" class="publication-image" loading="lazy" />
-        </div>
-        <div class="publication-copy">
-          <p class="venue">IEEE Robotics and Automation Letters (RA-L)</p>
-          <h3>RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar</h3>
-          <p class="authors"><strong>Zhaoze Wang</strong>, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek</p>
-          <div class="publication-actions">
-            <a href="https://ieeexplore.ieee.org/abstract/document/10628992" target="_blank" rel="noreferrer">Paper ↗</a>
-            <a href="https://wangzhaoze.github.io/RADxGPS/" target="_blank" rel="noreferrer">Project ↗</a>
+      <a class="publication-link reveal" href="https://wangzhaoze.github.io/RADxGPS/" target="_blank" rel="noreferrer" data-cursor="view" aria-label="Open RADxGPS project page">
+        <article class="publication">
+          <div class="publication-image-wrap">
+            <img src="images/res_plot.png" alt="RADxGPS result visualization" class="publication-image" loading="lazy" />
           </div>
-        </div>
-      </article>
+          <div class="publication-copy">
+            <p class="venue">IEEE Robotics and Automation Letters (RA-L)</p>
+            <h3>RADxGPS: Cross-Modal Supervision based Road Segmentation and Trajectory Prediction with Automotive Radar</h3>
+            <p class="authors"><strong>Zhaoze Wang</strong>, Yi Jin, Anastasios Deligiannis, Juan-Carlos Fuentes-Michel, Martin Vossiek</p>
+            <p class="publication-open">OPEN PROJECT ↗</p>
+          </div>
+        </article>
+      </a>
     </section>
 
-    <section id="about" class="section section-cream about-section">
+    <section id="about" class="section section-dark about-section">
       <div class="about-lead reveal">
         <p class="section-index">03 / About</p>
-        <p class="about-statement">I work across <strong>automotive radar, computer vision, robotics and autonomous driving</strong>, with a current focus on radar simulation and generative AI.</p>
+        <p class="about-statement">I work across <strong>automotive radar, digital twins, simulation, generative AI, robotics and autonomous driving</strong>, building sensing systems that connect physical environments with intelligent models.</p>
       </div>
 
       <div class="profile-panel reveal">
@@ -180,10 +174,11 @@
       <div class="timeline-layout">
         <div class="timeline-column reveal">
           <h3>Experience</h3>
-          <div class="timeline-row"><p class="timeline-period">2024 — Present</p><div><h4>PhD Student · Radar & Autonomous Driving</h4><p>FORVIA HELLA · Germany</p><p class="timeline-detail">Automotive radar, simulation and generative AI for autonomous driving.</p></div></div>
-          <div class="timeline-row"><p class="timeline-period">2023 — 2024</p><div><h4>Master Thesis Student · Computer Vision & Robotics</h4><p>Bosch Center for Artificial Intelligence · Germany</p></div></div>
-          <div class="timeline-row"><p class="timeline-period">2023</p><div><h4>Research Intern · Computer Vision & Robotics</h4><p>Bosch Center for Artificial Intelligence · Germany</p></div></div>
-          <div class="timeline-row"><p class="timeline-period">2022 — 2023</p><div><h4>Student Research Assistant · Radar & Autonomous Driving</h4><p>Friedrich-Alexander-Universität Erlangen-Nürnberg · Germany</p></div></div>
+          <div class="timeline-row experience-row" data-photo=""><p class="timeline-period">2024 — Present</p><div><h4>PhD Student · Radar & Autonomous Driving</h4><p>FORVIA HELLA · Germany</p><p class="timeline-detail">Automotive radar, simulation and generative AI for autonomous driving.</p></div></div>
+          <div class="timeline-row experience-row" data-photo=""><p class="timeline-period">2023 — 2024</p><div><h4>Master Thesis Student · Computer Vision & Robotics</h4><p>Bosch Center for Artificial Intelligence · Germany</p></div></div>
+          <div class="timeline-row experience-row" data-photo=""><p class="timeline-period">2023</p><div><h4>Research Intern · Computer Vision & Robotics</h4><p>Bosch Center for Artificial Intelligence · Germany</p></div></div>
+          <div class="timeline-row experience-row" data-photo=""><p class="timeline-period">2022 — 2023</p><div><h4>Student Research Assistant · Radar & Autonomous Driving</h4><p>Friedrich-Alexander-Universität Erlangen-Nürnberg · Germany</p></div></div>
+          <p class="experience-photo-note">Experience photo previews are ready — images will appear here on hover once added.</p>
         </div>
 
         <div class="timeline-column reveal">
@@ -204,18 +199,9 @@
         </div>
 
         <form id="contact-form" class="contact-form" novalidate>
-          <label>
-            <span>Your Name *</span>
-            <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your Name" required />
-          </label>
-          <label>
-            <span>Your Email *</span>
-            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-          </label>
-          <label>
-            <span>Message *</span>
-            <textarea id="contact-message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
-          </label>
+          <label><span>Your Name *</span><input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your Name" required /></label>
+          <label><span>Your Email *</span><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+          <label><span>Message *</span><textarea id="contact-message" name="message" rows="6" placeholder="Write your message here..." required></textarea></label>
           <p id="form-status" class="form-status" aria-live="polite"></p>
           <button class="contact-submit" type="submit" data-cursor="view"><span>SEND MESSAGE</span><strong>PROCEED →</strong></button>
         </form>
