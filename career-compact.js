@@ -10,11 +10,19 @@
     .career-layout{grid-template-columns:minmax(190px,18vw) minmax(0,1fr);gap:clamp(20px,3vw,42px)}
     .career-rail{top:18vh;height:58vh}
     .career-line{left:12px;top:4%;bottom:4%}
-    .career-nav{height:92%}
+    .career-nav{position:relative;height:92%;display:block}
     .career-nav-copy{opacity:.22;transition:opacity .28s ease,transform .28s ease}
     .career-nav-year{display:none}
     .career-nav-role{font-size:clamp(16px,1.3vw,20px);line-height:1.1;white-space:nowrap;overflow:visible;text-overflow:clip;font-weight:520;letter-spacing:-.02em}
-    .career-nav-item{color:#605c56}
+    .career-nav-item{
+      position:absolute;
+      left:0;
+      right:0;
+      top:50%;
+      color:#605c56;
+      transform:translateY(calc(-50% + var(--career-nav-y, 0px)));
+      transition:color .35s ease,transform .48s cubic-bezier(.2,.8,.2,1),opacity .35s ease;
+    }
     .career-nav-item.is-active{color:#f2eee7}
     .career-nav-item.is-active .career-nav-copy{opacity:1;transform:translateX(4px)}
     .career-scenes{gap:8px}
@@ -55,13 +63,47 @@
   const scenes = [...story.querySelectorAll('.career-scene')];
   const navItems = [...story.querySelectorAll('.career-nav-item')];
   const fill = story.querySelector('.career-line-fill');
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+
+  const navStep = () => Math.max(72, Math.min(112, window.innerHeight * 0.095));
+
+  const positionNav = activeIndex => {
+    const step = navStep();
+    navItems.forEach((el, i) => {
+      el.style.setProperty('--career-nav-y', `${(i - activeIndex) * step}px`);
+    });
+  };
+
   const setActive = index => {
     scenes.forEach((el,i)=>el.classList.toggle('is-active',i===index));
     navItems.forEach((el,i)=>el.classList.toggle('is-active',i===index));
+    positionNav(index);
     if (fill) fill.style.height = `${(index/Math.max(1,scenes.length-1))*100}%`;
   };
-  scenes.forEach((scene,i)=>{
-    scene.addEventListener('mouseenter',()=>setActive(i));
-    scene.addEventListener('focusin',()=>setActive(i));
+
+  const syncFromSceneClasses = () => {
+    const index = scenes.findIndex(el => el.classList.contains('is-active'));
+    if (index >= 0) positionNav(index);
+  };
+
+  const initialIndex = Math.max(0, scenes.findIndex(el => el.classList.contains('is-active')));
+  positionNav(initialIndex);
+
+  const classObserver = new MutationObserver(() => {
+    const index = scenes.findIndex(el => el.classList.contains('is-active'));
+    if (index < 0) return;
+    navItems.forEach((el,i)=>el.classList.toggle('is-active',i===index));
+    positionNav(index);
+    if (fill) fill.style.height = `${(index/Math.max(1,scenes.length-1))*100}%`;
   });
+  scenes.forEach(scene => classObserver.observe(scene,{attributes:true,attributeFilter:['class']}));
+
+  if (finePointer) {
+    scenes.forEach((scene,i)=>{
+      scene.addEventListener('mouseenter',()=>setActive(i));
+      scene.addEventListener('focusin',()=>setActive(i));
+    });
+  }
+
+  window.addEventListener('resize', syncFromSceneClasses, { passive:true });
 })();
