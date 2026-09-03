@@ -15,12 +15,10 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
     reveals.forEach(el => revealObserver.observe(el));
-    requestAnimationFrame(() => {
-      document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('is-visible'));
-    });
+    requestAnimationFrame(() => document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('is-visible')));
   }
 
-  // Scroll progress + subtle hero drift
+  // Global scroll progress + subtle hero drift
   const progress = document.querySelector('.scroll-progress span');
   const heroInner = document.querySelector('.hero-inner');
   const onScroll = () => {
@@ -40,11 +38,7 @@
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorRing = document.querySelector('.cursor-ring');
   const finePointer = window.matchMedia('(pointer:fine)').matches;
-  let pointerX = innerWidth / 2;
-  let pointerY = innerHeight / 2;
-  let ringX = pointerX;
-  let ringY = pointerY;
-
+  let pointerX = innerWidth / 2, pointerY = innerHeight / 2, ringX = pointerX, ringY = pointerY;
   if (cursorDot && cursorRing && finePointer && !reduceMotion) {
     document.body.classList.add('custom-cursor-active');
     const cursorLoop = () => {
@@ -57,19 +51,16 @@
       requestAnimationFrame(cursorLoop);
     };
     requestAnimationFrame(cursorLoop);
-
     window.addEventListener('pointermove', e => {
       pointerX = e.clientX;
       pointerY = e.clientY;
       cursorDot.style.opacity = '1';
       cursorRing.style.opacity = '1';
     }, { passive: true });
-
     document.addEventListener('mouseleave', () => {
       cursorDot.style.opacity = '0';
       cursorRing.style.opacity = '0';
     });
-
     document.addEventListener('mouseover', e => {
       const target = e.target instanceof Element ? e.target.closest('a,button,[data-cursor]') : null;
       if (!target) {
@@ -122,89 +113,174 @@
     }, 2100);
   }
 
-  // Timeline cards. Each image keeps the ratio the user prepared rather than being forced to 16:9.
-  const timelineStyle = document.createElement('style');
-  timelineStyle.textContent = `
-    .experience-preview,.experience-photo-note{display:none!important}
-    .timeline-row.timeline-visual{
-      position:relative;isolation:isolate;overflow:hidden;
-      border:1px solid rgba(255,255,255,.085);border-radius:6px;
-      padding:26px 28px;min-height:0;aspect-ratio:var(--timeline-ratio,2.45/1);
-      align-content:end;background:#151513;
-      transition:border-color .38s ease,transform .42s cubic-bezier(.2,.8,.2,1),box-shadow .42s ease;
-    }
-    .timeline-row.timeline-visual::before{
-      content:"";position:absolute;inset:0;z-index:-2;
-      background-image:var(--timeline-photo,none);background-repeat:no-repeat;
-      background-size:cover;background-position:center;
-      opacity:0;transform:scale(1.018);
-      filter:saturate(.92) contrast(1.01) brightness(.90);
-      transition:opacity .42s ease,transform .85s cubic-bezier(.2,.8,.2,1),filter .42s ease;
-    }
-    .timeline-row.timeline-visual::after{
-      content:"";position:absolute;inset:0;z-index:-1;
-      background:linear-gradient(90deg,rgba(10,10,9,.78) 0%,rgba(10,10,9,.62) 38%,rgba(10,10,9,.30) 72%,rgba(10,10,9,.38) 100%),linear-gradient(0deg,rgba(10,10,9,.42),rgba(10,10,9,.03));
-      opacity:0;transition:opacity .4s ease;
-    }
-    .timeline-row.timeline-visual:hover{
-      transform:translateY(-3px);border-color:rgba(224,122,95,.34);
-      box-shadow:0 20px 58px rgba(0,0,0,.25);
-    }
-    .timeline-row.timeline-visual:hover::before{opacity:1;transform:scale(1);filter:saturate(1.02) contrast(1.01) brightness(.96)}
-    .timeline-row.timeline-visual:hover::after{opacity:.84}
-    .timeline-row.timeline-visual>.timeline-period,.timeline-row.timeline-visual>div{position:relative;z-index:2}
-    .timeline-row.timeline-visual .timeline-period{color:#aaa49c;transition:color .3s ease}
-    .timeline-row.timeline-visual:hover .timeline-period{color:#e07a5f}
-    .timeline-row.timeline-visual h4{font-size:clamp(20px,1.65vw,27px);color:#f2efe8;text-shadow:0 1px 16px rgba(0,0,0,.62)}
-    .timeline-row.timeline-visual div>p{color:#d0cac2;text-shadow:0 1px 14px rgba(0,0,0,.62)}
-    .timeline-row.timeline-visual .timeline-detail{color:#b1aaa3}
-    @media(max-width:850px){
-      .timeline-row.timeline-visual{aspect-ratio:auto;min-height:165px;padding:22px}
-      .timeline-row.timeline-visual::before{opacity:.28;filter:saturate(.96) brightness(.88)}
-      .timeline-row.timeline-visual::after{opacity:.58}
-    }
-  `;
-  document.head.appendChild(timelineStyle);
-
-  const expRows = [...document.querySelectorAll('.timeline-layout > .timeline-column:first-child .timeline-row')];
-  const eduRows = [...document.querySelectorAll('.timeline-layout > .timeline-column:nth-child(2) .timeline-row')];
-
-  // Confirmed mapping:
-  // 1 PhD, 2 Research Intern, 3 Master Thesis, 4 Student RA, 5 M.Sc. FAU, 6 Bachelor.
-  const visualItems = [
-    { el: expRows[0], src: 'images/experience/1.png', ratio: '421/185' },
-    { el: expRows[1], src: 'images/experience/3.png', ratio: '421/185' },
-    { el: expRows[2], src: 'images/experience/2.png', ratio: '420/185' },
-    { el: expRows[3], src: 'images/experience/4.png', ratio: '492/185' },
-    { el: eduRows[0], src: 'images/experience/5.png', ratio: '462/185' },
-    { el: eduRows[1], src: 'images/experience/6.png', ratio: '561/185' }
-  ].filter(item => item.el);
-
-  visualItems.forEach(item => {
-    item.el.classList.add('timeline-visual');
-    item.el.style.setProperty('--timeline-ratio', item.ratio);
-    item.el.dataset.timelinePhoto = item.src;
-  });
-
-  // Load the six PNGs only when the timeline is approaching the viewport.
-  const timelineImageObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const src = el.dataset.timelinePhoto;
-      if (src && !el.dataset.timelineLoaded) {
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = () => {
-          el.style.setProperty('--timeline-photo', `url("${src}")`);
-          el.dataset.timelineLoaded = 'true';
-        };
-        img.src = src;
+  // Career timeline — unified Education + Experience, earliest -> present.
+  const oldTimeline = document.querySelector('.timeline-layout');
+  if (oldTimeline) {
+    const careerItems = [
+      {
+        year: '2021 — 2024',
+        shortYear: '2021',
+        role: 'M.Sc. Mechatronics',
+        place: 'Friedrich-Alexander-Universität Erlangen-Nürnberg',
+        meta: 'Master · Mechatronics',
+        text: 'Graduate studies in mechatronics with a growing focus on perception, robotics and intelligent sensing.',
+        image: 'images/career/master.png'
+      },
+      {
+        year: '2022 — 2023',
+        shortYear: '2022',
+        role: 'Student Research Assistant',
+        place: 'Friedrich-Alexander-Universität Erlangen-Nürnberg',
+        meta: 'Radar · Autonomous Driving',
+        text: 'Research work at the Chair of High-Frequency Technology on automotive radar signal processing and perception.',
+        image: 'images/career/research-assistant.png'
+      },
+      {
+        year: '2023',
+        shortYear: '2023',
+        role: 'Research Intern',
+        place: 'Bosch Center for Artificial Intelligence',
+        meta: 'Computer Vision · Robotics',
+        text: 'Learning-based perception and robotics research in an industrial AI environment.',
+        image: 'images/career/internship.png'
+      },
+      {
+        year: '2023 — 2024',
+        shortYear: '2024',
+        role: 'Master Thesis Student',
+        place: 'Bosch Center for Artificial Intelligence',
+        meta: '3D Scene Understanding · Robotics',
+        text: 'Master thesis on dense visual descriptor learning for 3D scene understanding in mobile robotics.',
+        image: 'images/career/master-thesis.png'
+      },
+      {
+        year: '2024 — Present',
+        shortYear: 'NOW',
+        role: 'PhD Student',
+        place: 'FORVIA HELLA',
+        meta: 'Radar · Digital Twin · Generative AI',
+        text: 'Research on automotive radar simulation, digital twins and generative AI for autonomous driving.',
+        image: 'images/career/phd.png'
       }
-      timelineImageObserver.unobserve(el);
-    });
-  }, { rootMargin: '360px 0px' });
-  visualItems.forEach(item => timelineImageObserver.observe(item.el));
+    ];
+
+    const style = document.createElement('style');
+    style.textContent = `
+      .experience-preview,.experience-photo-note{display:none!important}
+      .career-story{position:relative;margin-top:clamp(40px,6vw,90px)}
+      .career-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(42px,5vw,72px);padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
+      .career-heading h3{margin:0;font-size:clamp(34px,4.5vw,68px);font-weight:520;letter-spacing:-.045em;color:#f2efe8}
+      .career-heading p{margin:0;color:#746f68;text-transform:uppercase;letter-spacing:.13em;font-size:10px}
+      .career-layout{display:grid;grid-template-columns:minmax(150px,12vw) minmax(0,1fr);gap:clamp(26px,4vw,70px);align-items:start}
+      .career-rail{position:sticky;top:14vh;height:72vh;display:flex;flex-direction:column;justify-content:center;z-index:6}
+      .career-line{position:absolute;left:12px;top:8%;bottom:8%;width:1px;background:rgba(255,255,255,.13);overflow:hidden}
+      .career-line-fill{display:block;width:100%;height:0;background:#e07a5f;transition:height .55s cubic-bezier(.2,.8,.2,1)}
+      .career-nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;height:84%;position:relative;z-index:2}
+      .career-nav-item{display:grid;grid-template-columns:25px 1fr;gap:14px;align-items:center;color:#6d6963;transition:color .45s ease,transform .45s ease}
+      .career-dot{width:7px;height:7px;border-radius:50%;background:#5e5a54;border:1px solid rgba(255,255,255,.18);margin-left:9px;transition:transform .5s cubic-bezier(.2,.9,.2,1),background .35s ease,box-shadow .35s ease,border-color .35s ease}
+      .career-nav-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+      .career-nav-year{font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+      .career-nav-role{font-size:11px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .career-nav-item.is-active{color:#f1eee7;transform:translateX(2px)}
+      .career-nav-item.is-active .career-dot{transform:scale(2.15);background:#e07a5f;border-color:#e07a5f;box-shadow:0 0 0 5px rgba(224,122,95,.12),0 0 28px rgba(224,122,95,.34)}
+      .career-scenes{display:flex;flex-direction:column;gap:clamp(48px,8vh,92px)}
+      .career-scene{position:relative;min-height:78vh;display:flex;align-items:center;opacity:.44;transform:translateY(28px) scale(.985);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+      .career-scene.is-active{opacity:1;transform:translateY(0) scale(1)}
+      .career-panel{position:relative;width:100%;height:min(68vh,690px);min-height:480px;overflow:hidden;border:1px solid rgba(255,255,255,.09);border-radius:8px;background:#11110f;box-shadow:0 30px 90px rgba(0,0,0,.20)}
+      .career-image{position:absolute;inset:0 0 0 32%;z-index:0;background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.035);filter:saturate(.92) contrast(1.02) brightness(.94);transition:transform 1.25s cubic-bezier(.2,.8,.2,1),filter .7s ease}
+      .career-scene.is-active .career-image{transform:scale(1);filter:saturate(1) contrast(1.01) brightness(1)}
+      .career-panel::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#11110f 0%,#11110f 29%,rgba(17,17,15,.96) 38%,rgba(17,17,15,.78) 47%,rgba(17,17,15,.36) 59%,rgba(17,17,15,.08) 72%,rgba(17,17,15,.02) 100%)}
+      .career-panel::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(8,8,7,.22),transparent 35%,rgba(8,8,7,.04));pointer-events:none}
+      .career-copy{position:relative;z-index:2;width:min(44%,590px);height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(34px,5vw,74px)}
+      .career-kicker{margin:0 0 18px;color:#e07a5f;text-transform:uppercase;letter-spacing:.14em;font-size:10px}
+      .career-role{margin:0;color:#f3f0e9;font-size:clamp(38px,5vw,76px);line-height:.94;letter-spacing:-.055em;font-weight:560}
+      .career-place{margin:18px 0 0;color:#d2ccc4;font-size:clamp(16px,1.6vw,23px);line-height:1.25;letter-spacing:-.02em}
+      .career-year{margin:14px 0 0;color:#8f8981;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
+      .career-description{margin:clamp(32px,5vh,54px) 0 0;max-width:470px;color:#aaa49c;font-size:14px;line-height:1.65}
+      .career-index{position:absolute;left:clamp(34px,5vw,74px);bottom:32px;z-index:2;color:#5f5b55;font-size:10px;letter-spacing:.14em}
+      @media(max-width:1050px){
+        .career-layout{grid-template-columns:88px minmax(0,1fr);gap:18px}
+        .career-nav-copy{display:none}.career-line{left:11px}.career-dot{margin-left:8px}
+        .career-panel{height:min(64vh,620px)}
+        .career-image{left:26%}.career-copy{width:54%;padding:36px}
+      }
+      @media(max-width:760px){
+        .career-heading{align-items:flex-start;flex-direction:column}
+        .career-layout{display:block}.career-rail{display:none}.career-scenes{gap:34px}
+        .career-scene{min-height:auto;opacity:1;transform:none}
+        .career-panel{height:auto;min-height:610px;display:flex;align-items:flex-end}
+        .career-image{inset:0 0 38% 0;background-position:center;filter:saturate(.95) brightness(.86)}
+        .career-panel::before{background:linear-gradient(0deg,#11110f 0%,#11110f 38%,rgba(17,17,15,.92) 48%,rgba(17,17,15,.36) 63%,rgba(17,17,15,.05) 78%)}
+        .career-copy{width:100%;height:auto;min-height:300px;justify-content:flex-end;padding:28px 24px 58px}
+        .career-role{font-size:clamp(34px,10vw,54px)}
+        .career-description{margin-top:22px;font-size:13px}.career-index{left:24px;bottom:24px}
+      }
+      @media(prefers-reduced-motion:reduce){.career-scene,.career-image,.career-dot,.career-line-fill{transition:none!important}.career-scene{opacity:1;transform:none}}
+    `;
+    document.head.appendChild(style);
+
+    const railItems = careerItems.map((item, i) => `
+      <li class="career-nav-item${i === 0 ? ' is-active' : ''}" data-career-nav="${i}">
+        <span class="career-dot"></span>
+        <span class="career-nav-copy"><span class="career-nav-year">${item.shortYear}</span><span class="career-nav-role">${item.role}</span></span>
+      </li>`).join('');
+
+    const scenes = careerItems.map((item, i) => `
+      <article class="career-scene${i === 0 ? ' is-active' : ''}" data-career-scene="${i}">
+        <div class="career-panel">
+          <div class="career-image" style="background-image:url('${item.image}')" aria-hidden="true"></div>
+          <div class="career-copy">
+            <p class="career-kicker">${item.meta}</p>
+            <h4 class="career-role">${item.role}</h4>
+            <p class="career-place">${item.place}</p>
+            <p class="career-year">${item.year}</p>
+            <p class="career-description">${item.text}</p>
+          </div>
+          <span class="career-index">0${i + 1} / 0${careerItems.length}</span>
+        </div>
+      </article>`).join('');
+
+    const story = document.createElement('div');
+    story.className = 'career-story reveal is-visible';
+    story.innerHTML = `
+      <div class="career-heading">
+        <h3>Experience</h3>
+        <p>Education · Research · Industry / 2021 — Present</p>
+      </div>
+      <div class="career-layout">
+        <aside class="career-rail" aria-label="Career timeline">
+          <span class="career-line"><span class="career-line-fill"></span></span>
+          <ol class="career-nav">${railItems}</ol>
+        </aside>
+        <div class="career-scenes">${scenes}</div>
+      </div>`;
+    oldTimeline.replaceWith(story);
+
+    const sceneEls = [...story.querySelectorAll('.career-scene')];
+    const navEls = [...story.querySelectorAll('.career-nav-item')];
+    const lineFill = story.querySelector('.career-line-fill');
+    let activeCareer = 0;
+
+    const setActiveCareer = index => {
+      if (index === activeCareer && sceneEls[index]?.classList.contains('is-active')) return;
+      activeCareer = index;
+      sceneEls.forEach((el, i) => el.classList.toggle('is-active', i === index));
+      navEls.forEach((el, i) => el.classList.toggle('is-active', i === index));
+      if (lineFill) lineFill.style.height = `${(index / Math.max(1, careerItems.length - 1)) * 100}%`;
+    };
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const careerObserver = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveCareer(Number(visible.target.dataset.careerScene));
+      }, { threshold: [0.25, 0.4, 0.55, 0.7], rootMargin: '-18% 0px -28% 0px' });
+      sceneEls.forEach(el => careerObserver.observe(el));
+    } else {
+      sceneEls.forEach(el => el.classList.add('is-active'));
+    }
+  }
 
   // Contact form (static GitHub Pages: opens a prefilled email client)
   const contactForm = document.getElementById('contact-form');
@@ -225,7 +301,7 @@
     });
   }
 
-  // Lightweight radar/digital-twin hero canvas
+  // Lightweight radar / digital-twin hero canvas
   const canvas = document.getElementById('radar-canvas');
   if (!(canvas instanceof HTMLCanvasElement)) return;
   const ctx = canvas.getContext('2d');
@@ -249,7 +325,6 @@
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   };
-
   window.addEventListener('pointermove', e => {
     mx = e.clientX / innerWidth - .5;
     my = e.clientY / innerHeight - .5;
@@ -257,8 +332,7 @@
 
   const draw = t => {
     ctx.clearRect(0, 0, w, h);
-    const cx = w * (.66 + mx * .045);
-    const cy = h * (.63 + my * .035);
+    const cx = w * (.66 + mx * .045), cy = h * (.63 + my * .035);
     ctx.save();
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'rgba(235,232,225,.055)';
