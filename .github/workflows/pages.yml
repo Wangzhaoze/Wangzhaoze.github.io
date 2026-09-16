@@ -32,6 +32,7 @@ jobs:
           mkdir -p _site/docs
           cp index.html styles.css script.js script-base.js career-compact.js contact-form.js .nojekyll _site/
           cp -R images _site/images
+          cp -R generative_range_azimuth _site/generative_range_azimuth
           cp "docs/Zhaoze Wang CV.pdf" "_site/docs/Zhaoze Wang CV.pdf"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
