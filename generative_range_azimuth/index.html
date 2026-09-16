@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Synthetic FMCW Radar Range–Azimuth Maps Augmentation with Generative Diffusion Model">
+  <meta property="og:title" content="Synthetic FMCW Radar Range–Azimuth Maps Augmentation with Generative Diffusion Model"/>
+  <meta property="og:description" content="Conditional diffusion for realistic FMCW radar RAMap synthesis with geometry-aware conditioning and target-consistency regularization."/>
+  <meta property="og:url" content="https://wangzhaoze.github.io/generative_range_azimuth/"/>
+  <meta property="og:image" content="https://arxiv.org/html/2601.06228v1/results_generated_ramap.png"/>
+  <meta property="og:image:width" content="2047"/>
+  <meta property="og:image:height" content="992"/>
+  <meta name="twitter:title" content="Synthetic FMCW Radar RAMap Augmentation with Generative Diffusion Model">
+  <meta name="twitter:description" content="Radar-aware conditional diffusion for realistic Range–Azimuth Map synthesis and downstream radar perception augmentation.">
+  <meta name="twitter:image" content="https://arxiv.org/html/2601.06228v1/results_generated_ramap.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="FMCW radar, automotive radar, diffusion model, range azimuth map, RAMap, generative AI, radar object detection, RadarConf 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synthetic FMCW Radar Range–Azimuth Maps Augmentation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://wangzhaoze.github.io/RADxGPS/static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://wangzhaoze.github.io/RADxGPS/static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://wangzhaoze.github.io/RADxGPS/static/css/index.css">
+  <style>
+    .publication-title{font-size:2.7rem!important;line-height:1.12!important}
+    .paper-figure{display:block;margin:0 auto;max-width:100%;height:auto}
+    .figure-caption{max-width:980px;margin:1.2rem auto 0;line-height:1.55}
+    .method-columns .box{height:100%}
+    .metric-number{font-family:'Google Sans',sans-serif;font-size:2.4rem;font-weight:700;line-height:1;color:#222}
+    .metric-label{margin-top:.7rem;color:#666;line-height:1.35}
+    .metric-box{height:100%;padding:1.5rem}
+    .result-table{font-size:.92rem}
+    .result-table th,.result-table td{text-align:center;vertical-align:middle}
+    .result-table th:first-child,.result-table td:first-child{text-align:left}
+    .best-row{font-weight:700;background:#f4f8ff}
+    .hero-body.figure-body{padding-top:2rem;padding-bottom:3rem}
+    pre{white-space:pre-wrap;word-break:break-word}
+    @media screen and (max-width:768px){.publication-title{font-size:2rem!important}.result-table{font-size:.78rem}}
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Synthetic FMCW Radar Range–Azimuth Maps Augmentation with Generative Diffusion Model</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://wangzhaoze.github.io/" target="_blank">Zhaoze Wang</a><sup>1,3</sup>,</span>
+            <span class="author-block">Changxu Zhang<sup>1,3</sup>,</span>
+            <span class="author-block">Tai Fei<sup>2</sup>,</span>
+            <span class="author-block">Christopher Grimm<sup>1</sup>,</span>
+            <span class="author-block">Yi Jin<sup>1</sup>,</span>
+            <span class="author-block">Claas Tebruegge<sup>1</sup>,</span>
+            <span class="author-block">Ernst Warsitz<sup>1</sup>,</span>
+            <span class="author-block">Markus Gardill<sup>3</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> HELLA GmbH &amp; Co. KGaA, Lippstadt, Germany</span><br>
+            <span class="author-block"><sup>2</sup> Dortmund University of Applied Sciences and Arts, Dortmund, Germany</span><br>
+            <span class="author-block"><sup>3</sup> Brandenburg University of Technology, Cottbus, Germany</span><br>
+            <span class="author-block"><strong>IEEE Radar Conference (RadarConf) 2026</strong></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/abstract/document/11675434" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2601.06228" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>PDF</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2601.06228" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-body figure-body has-text-centered">
+    <div class="container column is-four-fifths">
+      <img class="paper-figure" src="https://arxiv.org/html/2601.06228v1/introduction.png" alt="Conditional diffusion pipeline for FMCW radar RAMap synthesis">
+      <h2 class="subtitle has-text-centered figure-caption">
+        Diffusion model for RAMap reconstruction conditioned by semantic Confidence Maps. A U-Net predicts the noise in each denoising step to iteratively reconstruct a realistic FMCW radar range–azimuth map; the RGB image is shown only for scene visualization.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The scarcity and low diversity of well-annotated automotive radar datasets often limit the performance of deep-learning-based environmental perception. We propose a conditional generative framework for synthesizing realistic FMCW radar Range–Azimuth Maps (RAMaps) for pedestrians, cars, and cyclists. Conditioning is achieved through class-wise Confidence Maps (ConfMaps), while radar-specific Geometry-Aware Conditioning (GAC) and Target-Consistency Regularization (TCR) adapt diffusion generation to radar signal characteristics. Experiments on ROD2021 demonstrate a 3.6 dB PSNR improvement over the baseline, and training with a mixture of real and synthetic data improves downstream radar object-detection mAP by 4.15% compared with conventional image-processing-based augmentation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method</h2>
+    <div class="columns method-columns">
+      <div class="column"><div class="box"><h3 class="title is-5">Conditional RAMap Generation</h3><p>Semantic ConfMaps encode object class, range and azimuth as spatially aligned Gaussian targets and guide a conditional diffusion model to synthesize multi-class FMCW radar spectra.</p></div></div>
+      <div class="column"><div class="box"><h3 class="title is-5">Geometry-Aware Conditioning</h3><p>GAC incorporates range-dependent attenuation, antenna gain and inter-object occlusion into the conditioning signal, explicitly injecting radar geometry and propagation priors.</p></div></div>
+      <div class="column"><div class="box"><h3 class="title is-5">Target-Consistency Regularization</h3><p>TCR introduces a differentiable CFAR-inspired focal objective that emphasizes sparse target energy while still allowing realistic stochastic variation in radar background noise.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="hero-body has-text-centered">
+    <div class="container column is-four-fifths">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <img class="paper-figure" src="https://arxiv.org/html/2601.06228v1/results_generated_ramap.png" alt="Qualitative FMCW radar RAMap generation results">
+      <h2 class="subtitle has-text-centered figure-caption">
+        Qualitative RAMap generation across diverse driving scenes. From top to bottom: RGB images, class-wise ConfMaps, ground-truth RAMaps, and generated RAMaps. Red, green, and blue ConfMap responses denote pedestrians, cyclists, and cars, respectively.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+    <div class="columns has-text-centered">
+      <div class="column"><div class="box metric-box"><div class="metric-number">+3.6 dB</div><div class="metric-label">PSNR improvement over the baseline signal-generation method</div></div></div>
+      <div class="column"><div class="box metric-box"><div class="metric-number">23.7 dB</div><div class="metric-label">Best RAMap reconstruction PSNR using both GAC and TCR</div></div></div>
+      <div class="column"><div class="box metric-box"><div class="metric-number">+4.15%</div><div class="metric-label">Overall downstream mAP gain from synthetic radar augmentation</div></div></div>
+    </div>
+
+    <h3 class="title is-4 mt-6">Signal-Level Evaluation</h3>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+        <thead><tr><th>Method</th><th>Condition</th><th>GAC</th><th>TCR</th><th>PSNR ↑</th></tr></thead>
+        <tbody>
+          <tr><td>de Oliveira et al.</td><td>BBX Mask</td><td>×</td><td>×</td><td>20.1</td></tr>
+          <tr><td>Ours</td><td>ConfMap</td><td>×</td><td>×</td><td>22.1</td></tr>
+          <tr><td>Ours</td><td>ConfMap</td><td>✓</td><td>×</td><td>23.3</td></tr>
+          <tr class="best-row"><td>Ours</td><td>ConfMap</td><td>✓</td><td>✓</td><td>23.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4 mt-6">Downstream Radar Object Detection</h3>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+        <thead><tr><th>Method</th><th>Parking Lot mAP</th><th>Campus Road mAP</th><th>City Street mAP</th><th>Highway mAP</th><th>Overall mAP ↑</th><th>AP@0.5 ↑</th></tr></thead>
+        <tbody>
+          <tr><td>RODNet</td><td>58.41</td><td>34.27</td><td>17.71</td><td>30.24</td><td>31.30</td><td>35.22</td></tr>
+          <tr><td>RAMP-CNN</td><td>57.95</td><td>35.10</td><td>18.25</td><td>30.90</td><td>31.50</td><td>35.10</td></tr>
+          <tr class="best-row"><td>Ours</td><td>57.35</td><td>36.95</td><td>21.01</td><td>33.82</td><td>35.65</td><td>39.75</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{wang2026synthetic,
+  title     = {Synthetic FMCW Radar Range--Azimuth Maps Augmentation with Generative Diffusion Model},
+  author    = {Wang, Zhaoze and Zhang, Changxu and Fei, Tai and Grimm, Christopher and Jin, Yi and Tebruegge, Claas and Warsitz, Ernst and Gardill, Markus},
+  booktitle = {2026 IEEE Radar Conference (RadarConf)},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page uses the same <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> family as the <a href="https://wangzhaoze.github.io/RADxGPS/" target="_blank">RADxGPS</a> project page, originally adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
