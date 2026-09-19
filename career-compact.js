@@ -24,7 +24,7 @@
         background:transparent!important;
         display:grid!important;
         grid-template-columns:minmax(220px,46%) minmax(0,1fr)!important;
-        gap:clamp(28px,2.6vw,46px)!important;
+        gap:clamp(46px,3.5vw,70px)!important;
         align-items:center!important;
       }
       .about-section>.profile-panel .profile-photo{
@@ -32,13 +32,13 @@
         height:100%!important;
         max-height:none!important;
         aspect-ratio:auto!important;
-        object-fit:cover!important;
-        object-position:center!important;
-        filter:grayscale(1) contrast(1.04) brightness(.9)!important;
+        object-fit:contain!important;
+        object-position:left center!important;
+        filter:none!important;
       }
       .about-section>.profile-panel .profile-copy{
         min-width:0!important;
-        padding:0!important;
+        padding:0 0 0 clamp(10px,1vw,18px)!important;
       }
       .about-section>.profile-panel .profile-label{margin:0 0 14px!important}
       .about-section>.profile-panel .profile-copy h3{
